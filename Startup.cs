@@ -1,6 +1,8 @@
+using AngulatTest.Domain.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,6 +21,11 @@ namespace AngulatTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(connectionString));
+            services.AddTransient<ApplicationContext>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
