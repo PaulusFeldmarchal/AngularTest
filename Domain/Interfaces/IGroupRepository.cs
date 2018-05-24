@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace AngulatTest.Domain.Interfaces
 {
-    interface IGroupRepository
+    public interface IGroupRepository
     {
         Task<IEnumerable<GroupEntity>> GetAll();
         Task<GroupEntity> GetAsync(int id);

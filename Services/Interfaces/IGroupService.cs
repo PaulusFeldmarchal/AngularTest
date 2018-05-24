@@ -1,11 +1,15 @@
-﻿using System;
+﻿using AngulatTest.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AngulatTest.Services.Interfaces
 {
-    interface IGroupService
+    public interface IGroupService
     {
+        Task<IEnumerable<GroupModel>> GetAll();
+        Task<GroupModel> Get(int id);
+        Task Update(GroupModel model);
+        Task Add(GroupModel model);
+        Task Delete(int id);
     }
 }

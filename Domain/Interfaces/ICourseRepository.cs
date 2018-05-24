@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace AngulatTest.Domain.Interfaces
 {
-    interface ICourseRepository
+    public interface ICourseRepository
     {
         Task<IEnumerable<CourseEntity>> GetAll();
         Task<CourseEntity> GetAsync(int id);

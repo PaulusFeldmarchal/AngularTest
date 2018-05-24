@@ -1,11 +1,15 @@
-﻿using System;
+﻿using AngulatTest.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AngulatTest.Services.Interfaces
 {
-    interface IStudentService
+    public interface IStudentService
     {
+        Task<IEnumerable<StudentModel>> GetAll();
+        Task<StudentModel> Get(int id);
+        Task Update(StudentModel model);
+        Task Add(StudentModel model);
+        Task Delete(int id);
     }
 }
