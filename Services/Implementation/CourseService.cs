@@ -2,7 +2,6 @@
 using AngulatTest.Domain.Interfaces;
 using AngulatTest.Models;
 using AngulatTest.Services.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ namespace AngulatTest.Services.Implementation
 {
     public class CourseService : ICourseService
     {
-        private ICourseRepository _repository;
+        private readonly ICourseRepository _repository;
 
         public CourseService(ICourseRepository repository)
         {
@@ -20,17 +19,13 @@ namespace AngulatTest.Services.Implementation
 
         public async Task Add(CourseModel model)
         {
-            var groupEntity = new GroupEntity
-            {
-                Id = model.Group.Id,
-                Name = model.Group.Name
-            };
+            if (model.GroupId == 0)
+                return;
 
             var courseEntity = new CourseEntity
             {
                 Specialization = model.Specialization,
-                GroupId = model.Group.Id,
-                Group = groupEntity
+                GroupId = model.Id
             };
             await _repository.AddAsync(courseEntity);
         }
@@ -51,11 +46,7 @@ namespace AngulatTest.Services.Implementation
             {
                 Id = entity.Id,
                 Specialization = entity.Specialization,
-                Group = new GroupModel
-                {
-                    Id = entity.Group.Id,
-                    Name = entity.Group.Name
-                }
+                GroupId = entity.GroupId
             };            
 
             return model;
@@ -68,11 +59,7 @@ namespace AngulatTest.Services.Implementation
             {
                 Id = entity.Id,
                 Specialization = entity.Specialization,
-                Group = new GroupModel
-                {
-                    Id = entity.Group.Id,
-                    Name = entity.Group.Name
-                }
+                GroupId = entity.GroupId
             });
 
             return result;

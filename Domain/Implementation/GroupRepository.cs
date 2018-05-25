@@ -9,7 +9,7 @@ namespace AngulatTest.Domain.Implementation
 {
     public class GroupRepository : IGroupRepository
     {
-        private ApplicationContext _context;
+        private readonly ApplicationContext _context;
 
         public GroupRepository(ApplicationContext context)
         {

@@ -9,7 +9,7 @@ namespace AngulatTest.Domain.Implementation
 {
     public class StudentRepository : IStudentRepository
     {
-        private ApplicationContext _context;
+        private readonly ApplicationContext _context;
 
         public StudentRepository(ApplicationContext context)
         {

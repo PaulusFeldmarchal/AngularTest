@@ -1,15 +1,9 @@
 ﻿using AngulatTest.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace AngulatTest.Domain.Interfaces
 {
-    public interface ICourseRepository
+    public interface ICourseRepository : IRepository<CourseEntity>
     {
-        Task<IEnumerable<CourseEntity>> GetAll();
-        Task<CourseEntity> GetAsync(int id);
-        Task Update(CourseEntity entity);
-        Task AddAsync(CourseEntity entity);
-        Task DeleteAsync(CourseEntity entity);
+
     }
 }

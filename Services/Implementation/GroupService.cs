@@ -10,7 +10,7 @@ namespace AngulatTest.Services.Implementation
 {
     public class GroupService : IGroupService
     {
-        private IGroupRepository _repository;
+        private readonly IGroupRepository _repository;
 
         public GroupService(IGroupRepository repository)
         {

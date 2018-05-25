@@ -1,7 +1,6 @@
 ﻿using AngulatTest.Domain.Entities;
 using AngulatTest.Domain.Interfaces;
 using AngulatTest.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ namespace AngulatTest.Services.Implementation
 {
     public class StudentService
     {
-        private IStudentRepository _repository;
+        private readonly IStudentRepository _repository;
 
         public StudentService(IStudentRepository repository)
         {
@@ -19,17 +18,10 @@ namespace AngulatTest.Services.Implementation
 
         public async Task Add(StudentModel model)
         {
-            var groupEntity = new GroupEntity
-            {
-                Id = model.Group.Id,
-                Name = model.Group.Name
-            };
-
             var courseEntity = new StudentEntity
             {
                 Name = model.Name,
-                GroupId = model.Group.Id,
-                Group = groupEntity
+                GroupId = model.GroupId
             };
             await _repository.AddAsync(courseEntity);
         }
@@ -50,11 +42,7 @@ namespace AngulatTest.Services.Implementation
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                Group = new GroupModel
-                {
-                    Id = entity.Group.Id,
-                    Name = entity.Group.Name
-                }
+                GroupId = entity.GroupId
             };
 
             return model;
@@ -67,11 +55,7 @@ namespace AngulatTest.Services.Implementation
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                Group = new GroupModel
-                {
-                    Id = entity.Group.Id,
-                    Name = entity.Group.Name
-                }
+                GroupId = entity.GroupId
             });
 
             return result;

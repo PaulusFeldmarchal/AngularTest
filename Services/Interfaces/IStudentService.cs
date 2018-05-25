@@ -4,12 +4,8 @@ using System.Threading.Tasks;
 
 namespace AngulatTest.Services.Interfaces
 {
-    public interface IStudentService
+    public interface IStudentService : IService<StudentModel>
     {
-        Task<IEnumerable<StudentModel>> GetAll();
-        Task<StudentModel> Get(int id);
-        Task Update(StudentModel model);
-        Task Add(StudentModel model);
-        Task Delete(int id);
+
     }
 }

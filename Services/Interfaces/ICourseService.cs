@@ -1,16 +1,9 @@
-﻿using AngulatTest
-    .Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using AngulatTest.Models;
 
 namespace AngulatTest.Services.Interfaces
 {
-    public interface ICourseService
+    public interface ICourseService : IService<CourseModel>
     {
-        Task<IEnumerable<CourseModel>> GetAll();
-        Task<CourseModel> Get(int id);
-        Task Update(CourseModel model);
-        Task Add(CourseModel model);
-        Task Delete(int id);
+
     }
 }
