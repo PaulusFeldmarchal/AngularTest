@@ -19,14 +19,16 @@ namespace AngulatTest.Controllers
         }
 
         // GET: Group
+        // POST: Group/Create
+        [HttpGet]
         public async Task<ActionResult> Index()
         {
             var models = await _service.GetAll();
             return Json(models);
         }
 
-
         // GET: Group/Details/5
+        [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
             var model = await _service.Get(id);
@@ -35,42 +37,26 @@ namespace AngulatTest.Controllers
 
         // POST: Group/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([FromBody]GroupModel model)
         {
-            await _service.Update(model);
-            return Json("New group added!");
+            await _service.Add(model);
+            return Json("New group has been added!");
         }
 
         // PUT: Group/Edit/5
         [HttpPut]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([FromBody]GroupModel model)
+        public async Task<ActionResult> Edit([FromBody]GroupModel model)
         {
-            
-        }
-
-        // GET: Group/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
+            await _service.Update(model);
+            return Json("Group has been edited!");
         }
 
         // DELETE: Group/Delete/5
         [HttpDelete]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _service.Delete(id);
+            return Json("Group has been deleted!");
         }
     }
 }

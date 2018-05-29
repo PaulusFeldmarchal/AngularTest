@@ -1,4 +1,8 @@
+using AngulatTest.Domain.Implementation;
+using AngulatTest.Domain.Interfaces;
 using AngulatTest.Domain.Persistence;
+using AngulatTest.Services.Implementation;
+using AngulatTest.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -26,6 +30,12 @@ namespace AngulatTest
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(connectionString));
             services.AddTransient<ApplicationContext>();
+            services.AddTransient<IGroupRepository, GroupRepository>();
+            services.AddTransient<IGroupService, GroupService>();
+            services.AddTransient<IStudentRepository, StudentRepository>();
+            services.AddTransient<IStudentService, StudentService>();
+            services.AddTransient<ICourseRepository, CourseRepository>();
+            services.AddTransient<ICourseService, CourseService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

@@ -1,13 +1,14 @@
 ﻿using AngulatTest.Domain.Entities;
 using AngulatTest.Domain.Interfaces;
 using AngulatTest.Models;
+using AngulatTest.Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AngulatTest.Services.Implementation
 {
-    public class StudentService
+    public class StudentService : IStudentService
     {
         private readonly IStudentRepository _repository;
 
