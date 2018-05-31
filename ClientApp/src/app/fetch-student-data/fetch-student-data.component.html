@@ -1,0 +1,25 @@
+<h1>Group Data</h1>
+<p>This component demonstrates fetching Group data from the server.</p>
+<p *ngIf="!studentList"><em>Loading...</em></p>
+<p>
+  <a [routerLink]="['/register-student']">Create New</a>
+</p>
+<table class='table' *ngIf="studentList">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of studentList">
+      <td>{{ student.id }}</td>
+      <td>{{ student.name }}</td>
+      <td>
+      <td>
+        <a [routerLink]="['/student/edit/', student.id]">Edit</a> |
+        <a [routerLink]="" (click)="delete(student.id)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

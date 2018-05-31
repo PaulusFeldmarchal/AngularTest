@@ -2,7 +2,7 @@
 <p>This component demonstrates fetching Group data from the server.</p>
 <p *ngIf="!groupList"><em>Loading...</em></p>
 <p>
-  <a [routerLink]="['/register-employee']">Create New</a>
+  <a [routerLink]="['/register-group']">Create New</a>
 </p>
 <table class='table' *ngIf="groupList">
   <thead>
@@ -17,7 +17,7 @@
       <td>{{ group.name }}</td>
       <td>
       <td>
-        <a [routerLink]="['/employee/edit/', group.id]">Edit</a> |
+        <a [routerLink]="['/group/edit/', group.id]">Edit</a> |
         <a [routerLink]="" (click)="delete(group.id)">Delete</a>
       </td>
     </tr>

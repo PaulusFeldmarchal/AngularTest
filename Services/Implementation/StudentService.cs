@@ -65,6 +65,8 @@ namespace AngulatTest.Services.Implementation
         public async Task Update(StudentModel model)
         {
             var entity = await _repository.GetAsync(model.Id);
+            entity.Name = model.Name;
+            entity.GroupId = model.GroupId;
             await _repository.Update(entity);
         }
     }

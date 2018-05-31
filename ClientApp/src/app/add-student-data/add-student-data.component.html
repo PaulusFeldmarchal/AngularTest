@@ -1,0 +1,27 @@
+<h1>{{title}}</h1>
+<h3>Student</h3>
+<hr />
+<form [formGroup]="studentForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+  <div class="form-student row">
+    <label class=" control-label col-md-12" for="Name">Name</label>
+    <div class="col-md-4">
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+  </div>
+  <div class="form-student row">
+    <label class=" control-label col-md-12" for="Group">Group</label>
+    <div class="col-md-4">
+      <ng-container *ngIf="groupList">
+        <select class="form-control" formControlName="groupId" *ngFor="let group of groupList">
+          <option value="{{ group.id }}">{{ group.name }}</option>
+        </select>
+      </ng-container>
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="form-student">
+    <button type="submit" class="btn btn-default">Save</button>
+    <button class="btn" (click)="cancel()">Cancel</button>
+  </div>
+</form>
