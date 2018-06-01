@@ -8,7 +8,9 @@ namespace AngulatTest.Domain.Entities
         public string Name { get; set; }
 
         public List<StudentEntity> Students { get; set; }
-        public List<CourseEntity> CourseEntities { get; set; }
+
+        public int CourseId { get; set; }
+        public CourseEntity Course { get; set; }
 
     }
 }

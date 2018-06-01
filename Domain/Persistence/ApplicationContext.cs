@@ -9,6 +9,8 @@ namespace AngulatTest.Domain.Persistence
         public DbSet<GroupEntity> Groups { get; set; }
         public DbSet<CourseEntity> Courses { get; set; }
 
-       public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
-    }    
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+             : base(options)
+        { }
+    }
 }

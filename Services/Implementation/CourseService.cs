@@ -19,13 +19,9 @@ namespace AngulatTest.Services.Implementation
 
         public async Task Add(CourseModel model)
         {
-            if (model.GroupId == 0)
-                return;
-
             var courseEntity = new CourseEntity
             {
-                Specialization = model.Specialization,
-                GroupId = model.Id
+                Specialization = model.Specialization
             };
             await _repository.AddAsync(courseEntity);
         }
@@ -45,8 +41,7 @@ namespace AngulatTest.Services.Implementation
             var model = new CourseModel
             {
                 Id = entity.Id,
-                Specialization = entity.Specialization,
-                GroupId = entity.GroupId
+                Specialization = entity.Specialization
             };            
 
             return model;
@@ -58,8 +53,7 @@ namespace AngulatTest.Services.Implementation
             var result = entities.Select(entity => new CourseModel
             {
                 Id = entity.Id,
-                Specialization = entity.Specialization,
-                GroupId = entity.GroupId
+                Specialization = entity.Specialization
             });
 
             return result;
@@ -69,7 +63,6 @@ namespace AngulatTest.Services.Implementation
         {
             var entity = await _repository.GetAsync(model.Id);
             entity.Specialization = model.Specialization;
-            entity.GroupId = model.GroupId;
             await _repository.Update(entity);
         }
 

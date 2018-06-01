@@ -44,6 +44,18 @@ export class GroupService {
       .catch(this.errorHandler);
   }
 
+  getAllStudents(id) {
+    return this._http.get(this.myAppUrl + "Group/DetailsAboutStudents/" + id)
+      .map((response: Response) => response)
+      .catch(this.errorHandler);
+  }
+
+  getAllCourses(id) {
+    return this._http.get(this.myAppUrl + "Group/DetailsAboutCourses/" + id)
+      .map((response: Response) => response)
+      .catch(this.errorHandler);
+  }
+
   errorHandler(error: Response) {
     console.log(error);
     return Observable.throw(error);

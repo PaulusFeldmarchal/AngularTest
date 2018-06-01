@@ -22,7 +22,8 @@ namespace AngulatTest.Services.Implementation
             var groupEntity = new GroupEntity
             {
                 Id = model.Id,
-                Name = model.Name
+                Name = model.Name,
+                CourseId = model.CourseId
             };
 
             await _repository.AddAsync(groupEntity);
@@ -43,7 +44,8 @@ namespace AngulatTest.Services.Implementation
             var model = new GroupModel
             {
                 Id = entity.Id,
-                Name = entity.Name
+                Name = entity.Name,
+                CourseId = entity.CourseId
             };
 
             return model;
@@ -56,6 +58,7 @@ namespace AngulatTest.Services.Implementation
             {
                 Id = entity.Id,
                 Name = entity.Name,
+                CourseId = entity.CourseId
             });
 
             return result;

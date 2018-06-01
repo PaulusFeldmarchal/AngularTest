@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AngulatTest.Models;
 using AngulatTest.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AngulatTest.Controllers
@@ -40,7 +36,7 @@ namespace AngulatTest.Controllers
         public async Task<ActionResult> Create([FromBody]GroupModel model)
         {
             await _service.Add(model);
-            return Json("New group has been added!");
+            return Ok();
         }
 
         // PUT: Group/Edit/5
@@ -48,7 +44,7 @@ namespace AngulatTest.Controllers
         public async Task<ActionResult> Edit([FromBody]GroupModel model)
         {
             await _service.Update(model);
-            return Json("Group has been edited!");
+            return Ok();
         }
 
         // DELETE: Group/Delete/5
@@ -56,7 +52,7 @@ namespace AngulatTest.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             await _service.Delete(id);
-            return Json("Group has been deleted!");
+            return Ok();
         }
     }
 }

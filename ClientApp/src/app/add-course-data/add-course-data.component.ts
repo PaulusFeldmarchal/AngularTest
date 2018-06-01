@@ -2,29 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { StudentService } from '../services/student-service.service';
+import { CourseService } from '../services/course-service.service';
 import { FormsModule } from '@angular/forms';
 import { GroupService } from '../services/group-service.service'
 
 @Component({
-  selector: 'createstudent',
-  templateUrl: './add-student-data.component.html'
+  selector: 'createcourse',
+  templateUrl: './add-course-data.component.html'
 })
-export class createStudent implements OnInit {
+export class createCourse implements OnInit {
   public groupList: GroupData[] = [];
-  studentForm: FormGroup;
+  courseForm: FormGroup;
   title: string = "Create";
   id: number;
   errorMessage: any;
   constructor(private _fb: FormBuilder, private _avRoute: ActivatedRoute,
-    private _studentService: StudentService, private _router: Router, private _groupService: GroupService) {
+    private _courseService: CourseService, private _router: Router, private _groupService: GroupService) {
     this.getGroups();
     if (this._avRoute.snapshot.params["id"]) {
       this.id = this._avRoute.snapshot.params["id"];
     }
-    this.studentForm = this._fb.group({
+    this.courseForm = this._fb.group({
       id: 0,
-      name: ['', [Validators.required]],
+      specialization: ['', [Validators.required]],
       groupId: 0
     })
   }
@@ -38,38 +38,38 @@ export class createStudent implements OnInit {
   ngOnInit() {
     if (this.id > 0) {
       this.title = "Edit";
-      this._studentService.getStudentById(this.id)
-        .subscribe(resp => this.studentForm.setValue(resp)
+      this._courseService.getCourseById(this.id)
+        .subscribe(resp => this.courseForm.setValue(resp)
           , error => this.errorMessage = error);
     }
   }
 
   save() {
-    if (!this.studentForm.valid) {
+    if (!this.courseForm.valid) {
       return;
     }
     if (this.title == "Create") {
-      this._studentService.saveStudent(this.studentForm.value)
+      this._courseService.saveCourse(this.courseForm.value)
         .subscribe((data) => {
-          this._router.navigate(['/fetch-student-data']);
+          this._router.navigate(['/fetch-course-data']);
         }, error => this.errorMessage = error)
     }
     else if (this.title == "Edit") {
-      this._studentService.updateStudent(this.studentForm.value)
+      this._courseService.updateCourse(this.courseForm.value)
         .subscribe((data) => {
-          this._router.navigate(['/fetch-student-data']);
+          this._router.navigate(['/fetch-course-data']);
         }, error => this.errorMessage = error)
     }
   }
 
   cancel() {
-    this._router.navigate(['/fetch-student-data']);
+    this._router.navigate(['/fetch-course-data']);
   }
 
-  get name() { return this.studentForm.get('name');
+  get name() { return this.courseForm.get('specialization');
   }
 
-  get groupId() { return this.studentForm.get('groupId') }
+  get groupId() { return this.courseForm.get('groupId') }
 }
 export interface GroupData {
   id: number;

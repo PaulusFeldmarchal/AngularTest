@@ -1,0 +1,25 @@
+<h1>Course Data</h1>
+<p>This component demonstrates fetching Course data from the server.</p>
+<p *ngIf="!courseList"><em>Loading...</em></p>
+<p>
+  <a [routerLink]="['/register-course']">Create New</a>
+</p>
+<table class='table' *ngIf="courseList">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Specialization</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of courseList">
+      <td>{{ course.id }}</td>
+      <td>{{ course.specialization }}</td>
+      <td>
+      <td>
+        <a [routerLink]="['/course/edit/', course.id]">Edit</a> |
+        <a [routerLink]="" (click)="delete(course.id)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

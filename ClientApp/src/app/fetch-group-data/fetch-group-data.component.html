@@ -17,8 +17,9 @@
       <td>{{ group.name }}</td>
       <td>
       <td>
-        <a [routerLink]="['/group/edit/', group.id]">Edit</a> |
-        <a [routerLink]="" (click)="delete(group.id)">Delete</a>
+        <a [routerLink]="['/group/edit/', group.id]">Edit</a> | 
+        <a [routerLink]="['/group/detail/', group.id]">Details</a> | 
+        <a [routerLink]="" (click)="delete(group.id)">Delete</a> 
       </td>
     </tr>
   </tbody>

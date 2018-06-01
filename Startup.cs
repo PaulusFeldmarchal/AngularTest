@@ -30,6 +30,7 @@ namespace AngulatTest
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(connectionString));
             services.AddTransient<ApplicationContext>();
+
             services.AddTransient<IGroupRepository, GroupRepository>();
             services.AddTransient<IGroupService, GroupService>();
             services.AddTransient<IStudentRepository, StudentRepository>();
