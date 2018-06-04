@@ -1,12 +1,13 @@
 <h1>
-  Detail of {{group.name}} 
+  Detail of "{{group.name}}" 
   (<a [routerLink]="['/group/edit/', group.id]">Edit</a>)
 </h1>
+<h2>Course {{group.course}}</h2>
 <div class="grid">
   <div class="column">
     <h2>Student Data</h2>
-    <p *ngIf="!studentList"><em>Loading...</em></p>
-    <table class='table' *ngIf="studentList">
+    <p *ngIf="!group.students"><em>Loading...</em></p>
+    <table class='table' *ngIf="group.students">
       <thead>
         <tr>
           <th>ID</th>
@@ -15,7 +16,7 @@
       </thead>
       <tbody>
         <ng-container>
-          <tr *ngFor="let student of studentList">
+          <tr *ngFor="let student of group.students">
             <td>{{ student.id }}</td>
             <td>{{ student.name }}</td>
             <td>
@@ -24,31 +25,6 @@
               <a [routerLink]="" (click)="delete(student.id)">Delete</a>
             </td>
           </tr>
-        </ng-container>
-      </tbody>
-    </table>
-  </div>
-  <div class="column">
-    <h2>Course Data</h2>
-    <p *ngIf="!courseList"><em>Loading...</em></p>
-    <table class='table' *ngIf="courseList">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Specialization</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container>
-        <tr *ngFor="let course of courseList">
-          <td>{{ course.id }}</td>
-          <td>{{ course.specialization }}</td>
-          <td>
-          <td>
-            <a [routerLink]="['/course/edit/', course.id]">Edit</a> |
-            <a [routerLink]="" (click)="delete(course.id)">Delete</a>
-          </td>
-        </tr>
         </ng-container>
       </tbody>
     </table>

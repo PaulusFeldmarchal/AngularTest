@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { GroupService } from '../services/group-service.service'
+import { GroupService } from '../services/group.service'
 @Component({
   selector: 'app-fetch-group-data',
   templateUrl: './fetch-group-data.component.html',
@@ -23,7 +23,6 @@ export class FetchGroupDataComponent {
     if (ans) {
       this._groupService.deleteGroup(groupID).subscribe((data) => {
         this.getGroups();
-        alert(data);
       }, error => console.error(error))
     }
   }

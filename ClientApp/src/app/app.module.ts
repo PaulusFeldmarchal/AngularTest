@@ -10,12 +10,13 @@ import { FetchGroupDataComponent } from './fetch-group-data/fetch-group-data.com
 import { createGroup } from './add-group-data/add-group-data.component'
 import { FetchStudentDataComponent } from './fetch-student-data/fetch-student-data.component';
 import { createStudent } from './add-student-data/add-student-data.component'
-import { GroupService } from './services/group-service.service';
-import { StudentService } from './services/student-service.service';
-import { CourseService } from './services/course-service.service';
+import { GroupService } from './services/group.service';
+import { StudentService } from './services/student.service';
+import { CourseService } from './services/course.service';
 import { FetchCourseDataComponent } from './fetch-course-data/fetch-course-data.component';
 import { createCourse } from './add-course-data/add-course-data.component'
 import { groupDetail } from './group-detail/group-detail.component'
+import { routes } from './imports/routes'
 
 
 @NgModule({
@@ -35,19 +36,7 @@ import { groupDetail } from './group-detail/group-detail.component'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: FetchGroupDataComponent, pathMatch: 'full' },
-      { path: 'fetch-group-data', component: FetchGroupDataComponent },
-      { path: 'register-group', component: createGroup },
-      { path: 'group/edit/:id', component: createGroup },
-      { path: 'fetch-student-data', component: FetchStudentDataComponent },
-      { path: 'register-student', component: createStudent },
-      { path: 'student/edit/:id', component: createStudent },
-      { path: 'fetch-course-data', component: FetchCourseDataComponent },
-      { path: 'register-course', component: createCourse },
-      { path: 'course/edit/:id', component: createCourse },
-      { path: 'group/detail/:id', component: groupDetail },
-    ])
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [GroupService, StudentService, CourseService],
   bootstrap: [AppComponent]

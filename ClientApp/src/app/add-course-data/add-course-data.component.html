@@ -8,16 +8,6 @@
       <input class="form-control" type="text" formControlName="specialization">
     </div>
   </div>
-  <div class="form-student row">
-    <label class=" control-label col-md-12" for="Group">Group</label>
-    <div class="col-md-4">
-      <ng-container *ngIf="groupList">
-        <select class="form-control" formControlName="groupId" >
-          <option *ngFor="let group of groupList" value="{{ group.id }}">{{ group.name }}</option>
-        </select>
-      </ng-container>
-    </div>
-  </div>
   <br />
   <br />
   <div class="form-course">

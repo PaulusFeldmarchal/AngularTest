@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { StudentService } from '../services/student-service.service';
+import { StudentService } from '../services/student.service';
 import { FormsModule } from '@angular/forms';
-import { GroupService } from '../services/group-service.service'
+import { GroupService } from '../services/group.service'
 
 @Component({
   selector: 'createstudent',

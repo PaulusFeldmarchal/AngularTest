@@ -31,6 +31,13 @@ namespace AngulatTest.Controllers
             return Json(model);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> About(int id)
+        {
+            var result = await _service.GetDetail(id);
+            return Json(result);
+        }
+
         // POST: Group/Create
         [HttpPost]
         public async Task<ActionResult> Create([FromBody]GroupModel model)

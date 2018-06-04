@@ -37,21 +37,21 @@ namespace AngulatTest.Domain.Implementation
             return userEntities;
         }
 
-        /* my query
-         
-                var result = await _context.Groups
-                .Where(g => g.Id == id)
+        public async Task<GroupDetail> GetDetail(int groupId)
+        {
+            var result = await _context.Groups
+                .Where(g => g.Id == groupId)
                 .GroupJoin(
-                _context.Students,
+                _context.Students.DefaultIfEmpty(),
                 g => g.Id,
                 s => s.GroupId,
-                (group, students) =>
+                (group, student) =>
                 new GroupDetail
                 {
                     Course = group.Course.Specialization,
                     Id = group.Id,
                     Name = group.Name,
-                    Students = students.Select(studentEntity =>
+                    Students = student.Select(studentEntity =>
                         new StudentModel
                         {
                             Name = studentEntity.Name,
@@ -60,12 +60,10 @@ namespace AngulatTest.Domain.Implementation
                         }
                     )
                 }
-            )
-            .FirstOrDefaultAsync();
-
-
-
-             */
+            ).FirstOrDefaultAsync();
+            
+            return result;
+        }
 
         public async Task<GroupEntity> GetAsync(int id)
         {         

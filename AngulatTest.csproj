@@ -31,16 +31,20 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\group-detail\group-detail.component.ts" />
-    <None Remove="ClientApp\src\app\services\course-service.service.ts" />
-    <None Remove="ClientApp\src\app\services\group-service.service.ts" />
-    <None Remove="ClientApp\src\app\services\student-service.service.ts" />
+    <None Remove="ClientApp\src\app\imports\routes.ts" />
+    <None Remove="ClientApp\src\app\services\base.service.ts" />
+    <None Remove="ClientApp\src\app\services\course.service.ts" />
+    <None Remove="ClientApp\src\app\services\group.service.ts" />
+    <None Remove="ClientApp\src\app\services\student.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\group-detail\group-detail.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\services\student-service.service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\services\course-service.service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\services\group-service.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\imports\routes.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\base.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\student.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\course.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\group.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

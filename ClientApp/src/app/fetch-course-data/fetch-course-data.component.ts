@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CourseService } from '../services/course-service.service'
+import { CourseService } from '../services/course.service'
 
 @Component({
   selector: 'app-fetch-course-data',
@@ -24,7 +24,6 @@ export class FetchCourseDataComponent {
     if (ans) {
       this._courseService.deleteCourse(courseID).subscribe((data) => {
         this.getCourse();
-        alert(data);
       }, error => console.error(error))
     }
   }

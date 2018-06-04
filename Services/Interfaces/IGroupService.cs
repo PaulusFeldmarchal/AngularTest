@@ -7,6 +7,6 @@ namespace AngulatTest.Services.Interfaces
 {
     public interface IGroupService : IService<GroupModel>
     {
-        Task<IEnumerable<GroupDetail>> getDetailAboutGroupById(int groupId);
+        Task<GroupDetail> GetDetail(int groupId);
     }
 }

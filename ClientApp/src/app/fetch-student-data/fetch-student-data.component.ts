@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { StudentService } from '../services/student-service.service'
+import { StudentService } from '../services/student.service'
 
 @Component({
   selector: 'app-fetch-student-data',
@@ -24,7 +24,6 @@ export class FetchStudentDataComponent {
     if (ans) {
       this._studentService.deleteStudent(studentID).subscribe((data) => {
         this.getStudents();
-        alert(data);
       }, error => console.error(error))
     }
   }

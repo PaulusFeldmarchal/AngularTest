@@ -5,6 +5,7 @@ using AngulatTest.Domain.Entities;
 using AngulatTest.Domain.Interfaces;
 using AngulatTest.Models;
 using AngulatTest.Services.Interfaces;
+using AngulatTest.View.Models;
 
 namespace AngulatTest.Services.Implementation
 {
@@ -69,6 +70,11 @@ namespace AngulatTest.Services.Implementation
             var entity = await _repository.GetAsync(model.Id);
             entity.Name = model.Name;
             await _repository.Update(entity);
+        }
+        public async Task<GroupDetail> GetDetail(int groupId)
+        {
+            var result = await _repository.GetDetail(groupId);
+            return result;
         }
     }
 }

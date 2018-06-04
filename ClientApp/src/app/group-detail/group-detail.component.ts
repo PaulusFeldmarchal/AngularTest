@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { GroupService } from '../services/group-service.service'
+import { GroupService } from '../services/group.service'
+import { StudentData } from '../fetch-student-data/fetch-student-data.component';
 
 @Component({
   selector: 'app-group-detail',
@@ -10,9 +11,7 @@ import { GroupService } from '../services/group-service.service'
   providers: [GroupService]
 })
 export class groupDetail {
-  public courseList: CourseData[] = [];
-  public studentList: StudentData[] = [];
-  public group: GroupData = new GroupData();
+  public group: GroupDetail;
   id: number;
 
   constructor(private _router: Router, private _groupService: GroupService, private _avRoute: ActivatedRoute) {
@@ -20,28 +19,16 @@ export class groupDetail {
     this.getData();
   }
   getData() {
-    this._groupService.getGroupById(this.id).subscribe(data => {
+    this._groupService.getGroupDetails(this.id).subscribe(data => {
       this.group = data;
-    });
-    this._groupService.getAllCourses(this.id).subscribe(data => {
-      this.courseList = data;
-    });
-    this._groupService.getAllStudents(this.id).subscribe(data => {
-      this.studentList = data;
     });
   }
 }
-export interface CourseData {
-  id: number;
-  Specialization: string;
-  groupId: number;
-}
-export interface StudentData {
+
+export interface GroupDetail {
+  course: string;
   id: number;
   name: string;
-  groupId: number;
+  students: StudentData[];
 }
-export class GroupData {
-  id: number = 0;
-  name: string = '';
-}
+

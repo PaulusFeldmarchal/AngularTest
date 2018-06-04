@@ -2,37 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CourseService } from '../services/course-service.service';
+import { CourseService } from '../services/course.service';
 import { FormsModule } from '@angular/forms';
-import { GroupService } from '../services/group-service.service'
 
 @Component({
   selector: 'createcourse',
   templateUrl: './add-course-data.component.html'
 })
 export class createCourse implements OnInit {
-  public groupList: GroupData[] = [];
   courseForm: FormGroup;
   title: string = "Create";
   id: number;
   errorMessage: any;
   constructor(private _fb: FormBuilder, private _avRoute: ActivatedRoute,
-    private _courseService: CourseService, private _router: Router, private _groupService: GroupService) {
-    this.getGroups();
+    private _courseService: CourseService, private _router: Router) {
     if (this._avRoute.snapshot.params["id"]) {
       this.id = this._avRoute.snapshot.params["id"];
     }
     this.courseForm = this._fb.group({
       id: 0,
-      specialization: ['', [Validators.required]],
-      groupId: 0
+      specialization: ['', [Validators.required]]
     })
-  }
-
-  getGroups() {
-    this._groupService.getGroups().subscribe(data => {
-      this.groupList = data;
-    });
   }
 
   ngOnInit() {
@@ -68,10 +58,5 @@ export class createCourse implements OnInit {
 
   get name() { return this.courseForm.get('specialization');
   }
+}
 
-  get groupId() { return this.courseForm.get('groupId') }
-}
-export interface GroupData {
-  id: number;
-  name: string;
-}
