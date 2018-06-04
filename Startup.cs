@@ -5,6 +5,9 @@ using AngulatTest.Services.Implementation;
 using AngulatTest.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +27,10 @@ namespace AngulatTest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
 
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options =>
@@ -57,9 +63,17 @@ namespace AngulatTest
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<ApplicationContext>();
+                context.Database.Migrate();
+            }
+
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
+            var options = new RewriteOptions()
+            .AddRedirectToHttps(StatusCodes.Status301MovedPermanently, 63423);
+            app.UseRewriter(options);
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
