@@ -71,9 +71,7 @@ namespace AngulatTest
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-            var options = new RewriteOptions()
-            .AddRedirectToHttps(StatusCodes.Status301MovedPermanently, 63423);
-            app.UseRewriter(options);
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
